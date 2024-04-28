@@ -4,9 +4,8 @@ from enum import Enum
 
 
 class PlayerStatus(Enum):
-    ACTIVE = "Active"
-    INACTIVE = "Inactive"
-    UNKNOWN = "Unknown"
+    STUDENT = "Student"
+    VOLUNTEER = "Volunteer"
 
 
 class GameResult(Enum):
@@ -20,6 +19,8 @@ class GameResult(Enum):
 
 class UserClub(models.Model):
     name = models.CharField(max_length=100)
+    key = models.CharField(max_length=100)
+    owner = models.ForeignKey(User, null=False)
 
 
 class Player(models.Model):
@@ -27,6 +28,7 @@ class Player(models.Model):
     status = models.CharField(max_length=100, choices=[(tag.name, tag.value) for tag in PlayerStatus])
     oldRating = models.IntegerField(default=100)
     currentRating = models.IntegerField(default=100)
+    startingRating = models.IntegerField(default=100)
     opponentOne = models.OneToOneField(
         'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_one'
         )
@@ -36,6 +38,10 @@ class Player(models.Model):
     opponentThree = models.OneToOneField(
         'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_three'
         )
+    grade = models.CharField(max_length=100)
+    parent_email = models.CharField(max_length=300)
+    parent_name = models.CharField(max_length=100)
+    parent_number = models.CharField(max_length=20)
 
 
 class Class(models.Model):
