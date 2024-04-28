@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-a-a$k(m8=$a=n@o2s!%*atdwlc+hl4!*b$yw1*%a682oi-+l@f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# TODO: Configure HTTPS settings for production deployment using a proper web server or service.
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
