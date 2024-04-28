@@ -22,5 +22,5 @@ admin.site.site_title = 'Chess Website'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("ratingandpairings.urls")),
+    path('', include("ratingsandpairings.urls")),
 ]
