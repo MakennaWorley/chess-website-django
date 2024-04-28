@@ -25,7 +25,7 @@ class GameColor(Enum):
 class UserClub(models.Model):
     name = models.CharField(max_length=100)
     key = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, null=False)
+    owner = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
 
 class Player(models.Model):
@@ -36,13 +36,13 @@ class Player(models.Model):
     current_rating = models.IntegerField(default=100)
     starting_rating = models.IntegerField(default=100)
     opponent_one = models.OneToOneField(
-        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_one'
+        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_latest'
         )
     opponent_two = models.OneToOneField(
-        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_two'
+        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_middle'
         )
     opponent_three = models.OneToOneField(
-        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_three'
+        'self', on_delete=models.SET_NULL, null=True, blank=True, related_name='opponent_oldest'
         )
     grade = models.CharField(max_length=100)
     parent_email = models.CharField(max_length=300)
@@ -54,8 +54,8 @@ class Player(models.Model):
 class Class(models.Model):
     name = models.CharField(max_length=100)
     level = models.CharField(max_length=100)
-    teacher_main = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True)
-    teacher_secondary = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True)
+    teacher_main = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='teacher')
+    teacher_secondary = models.ForeignKey(Player, on_delete=models.SET_NULL, null=True, blank=True, related_name='coteach')
     club = models.ForeignKey(UserClub, on_delete=models.CASCADE, null=False, blank=False)
 
 
