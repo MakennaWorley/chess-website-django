@@ -57,7 +57,7 @@ ROOT_URLCONF = 'chesswebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'ratingsandpairings/templates']
+        'DIRS': [BASE_DIR / 'ratingsandpairings/templates/']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -84,8 +84,12 @@ WSGI_APPLICATION = 'chesswebsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'chesswebsitedatabase',
+        'USER': 'django',
+        'PASSWORD': 'django123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

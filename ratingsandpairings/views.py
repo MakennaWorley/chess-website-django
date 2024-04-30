@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class LoginView(generic.FormView):
     form_class = LoginForm
-    template_name = "landingpage.html"
+    template_name = "ratingsandpairings/landingpage.html"
     success_url = "/home/"
 
     def form_valid(self, form):
@@ -28,4 +28,4 @@ class LoginView(generic.FormView):
 
 class HomeView(LoginRequiredMixin, generic.TemplateView):
     login_url = "/"
-    template_name = "homepage.html"
+    template_name = "ratingsandpairings/homepage.html"
