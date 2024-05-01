@@ -1,0 +1,9 @@
+In warp
+brew services start mysql
+brew services stop mysql
+
+
+mysql -u root -p
+password123
+
+opens up mysql to run queries and stuff
